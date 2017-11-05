@@ -5,8 +5,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    entrypoint: yarn start
-    working_dir: "/app"
     volumes:
       - "./frontend:/app"
   ingress:
@@ -18,6 +16,8 @@ services:
     links:
       - todo-list
       - frontend
+      - weather
+      - news
 
   todo-list-db:
     image: postgres:9.6-alpine
@@ -31,6 +31,19 @@ services:
 
     volumes:
       - "todo-postgres:/var/lib/postgresql/data"
+  weather:
+    build:
+      context: ./weather
+      dockerfile: Dockerfile
+    volumes:
+      - "./weather:/app"
+  news:
+    build:
+      context: ./news
+      dockerfile: Dockerfile
+    volumes:
+      - "./news:/app"
+
   todo-list:
     build:
       context: ./todo-list
