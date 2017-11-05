@@ -1,6 +1,14 @@
 version: "2"
 
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    entrypoint: yarn start
+    working_dir: "/app"
+    volumes:
+      - "./frontend:/app"
   ingress:
     build:
       context: ./ingress
@@ -9,6 +17,7 @@ services:
       - "4000:80"
     links:
       - todo-list
+      - frontend
 
   todo-list-db:
     image: postgres:9.6-alpine
