@@ -1,0 +1,35 @@
+version: "2"
+
+services:
+  ingress:
+    build:
+      context: ./ingress
+      dockerfile: Dockerfile
+    ports:
+      - "4000:80"
+    links:
+      - todo-list
+
+  todo-list-db:
+    image: postgres:9.6-alpine
+    ports:
+      - "5400:5432"
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: example
+
+    volumes:
+      - "todo-postgres:/var/lib/postgresql/data"
+  todo-list:
+    build:
+      context: ./todo-list
+      dockerfile: Dockerfile
+    volumes:
+      - "./todo-list:/app"
+    links:
+      - todo-list-db
+
+volumes:
+  todo-postgres:
