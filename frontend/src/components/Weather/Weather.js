@@ -37,12 +37,12 @@ const Weather = ({ classes, data }) => (
 );
 
 export default compose(
-  withStyles(styles),
   ajax('/api/weather', {
     query: {
       lat: 37.9574666,
       lng: -91.7488873,
     }
   }),
-  branch(({ data }) => data.isLoading, renderComponent(CircularProgress))
+  branch(({ data }) => data.isLoading, renderComponent(CircularProgress)),
+  withStyles(styles),
 )(Weather);
