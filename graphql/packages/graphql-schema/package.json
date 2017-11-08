@@ -1,0 +1,16 @@
+{
+  "name": "@dashboard/schema",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.17.0",
+    "casual": "^1.5.14",
+    "graphql": "^0.10.5",
+    "graphql-geojson": "^1.0.0",
+    "graphql-server-express": "^1.0.4",
+    "graphql-tools": "^1.1.0",
+    "terraformer": "^1.0.8"
+  }
+}

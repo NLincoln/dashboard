@@ -18,6 +18,18 @@ services:
       - frontend
       - weather
       - news
+      - graphql
+
+  graphql:
+    build:
+      context: ./graphql
+      dockerfile: Dockerfile
+    volumes:
+      - "./graphql:/app"
+    links:
+      - todo-list
+      - weather
+      - news
 
   todo-list:
     build:

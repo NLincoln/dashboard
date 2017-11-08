@@ -1,0 +1,15 @@
+{
+  "name": "@dashboard/graphql-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "graphql": "^0.10.5",
+    "apollo-server-express": "^1.1.6",
+    "@dashboard/schema": "1.0.0"
+  }
+}
