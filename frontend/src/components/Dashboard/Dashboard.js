@@ -2,6 +2,7 @@ import React from 'react';
 import withStyles from 'material-ui/styles/withStyles';
 
 import Weather from './../Weather/Weather';
+import Todo from './../Todo/Todo';
 
 const styles = theme => ({
   root: {
@@ -9,14 +10,20 @@ const styles = theme => ({
   },
   grid: {
     display: 'grid',
-    gridGap: theme.spacing.unit * 3,
+    gridGap: `${theme.spacing.unit * 3}px`,
+    gridTemplateColumns: '1fr 1fr'
   }
 })
 
 const Dashboard = ({ classes }) => (
   <div className={classes.root}>
     <div className={classes.grid}>
-      <Weather />
+      <div>
+        <Weather />
+      </div>
+      <div>
+        <Todo />
+      </div>
     </div>
   </div>
 );

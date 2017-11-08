@@ -5,6 +5,7 @@ require 'json'
 
 set :bind, '0.0.0.0'
 set :port, 4000
+set :protection, :except => [:json_csrf]
 
 DB = Sequel.connect('postgres://postgres:example@todo-list-db:5432/postgres')
 

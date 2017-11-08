@@ -16,7 +16,7 @@ export const apiAjax = async (url, { query, ...other }) => {
 export const apiRequest = (url, params) =>
   apiAjax(url, { method: "GET", ...params });
 
-export default (url, options) => Klass => {
+export default (url, options = {}) => Klass => {
   class LoaderComponent extends Component {
     constructor(props, context) {
       super(props, context);
@@ -36,17 +36,14 @@ export default (url, options) => Klass => {
       if (typeof options !== "function") {
         return;
       }
-      this.setState(
-        {
-          options: options(nextProps)
-        },
-        () => this.fetchData()
-      );
+      this.setState({
+        options: options(nextProps)
+      }, () => this.fetchData());
     }
 
     async fetchData() {
       const response = await apiRequest(url, {
-        query: this.state.options.query
+        query: this.state.options.query || {}
       });
       this.setState({
         response
@@ -57,10 +54,7 @@ export default (url, options) => Klass => {
       return (
         <Klass
           {...this.props}
-          data={{
-            ...this.state.response,
-            isLoading: !this.state.response
-          }}
+          data={this.state.response || { isLoading: true }}
         />
       );
     }

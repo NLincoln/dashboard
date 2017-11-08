@@ -2,6 +2,6 @@ FROM python:3.6
 
 WORKDIR /app
 
-RUN pip install requests flask
+RUN pip install requests flask redis
 
 CMD python weather_api.py

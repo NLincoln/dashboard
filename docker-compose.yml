@@ -19,8 +19,19 @@ services:
       - weather
       - news
 
+  todo-list:
+    build:
+      context: ./todo-list
+      dockerfile: Dockerfile
+    volumes:
+      - "./todo-list:/app"
+    links:
+      - todo-list-db
+    depends_on:
+      - todo-list-db
+
   todo-list-db:
-    image: postgres:9.6-alpine
+    image: postgres:10-alpine
     ports:
       - "5400:5432"
 
@@ -37,6 +48,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "./weather:/app"
+    links:
+      - redis
+
   news:
     build:
       context: ./news
@@ -44,14 +58,12 @@ services:
     volumes:
       - "./news:/app"
 
-  todo-list:
-    build:
-      context: ./todo-list
-      dockerfile: Dockerfile
+  redis:
+    image: redis:4
     volumes:
-      - "./todo-list:/app"
-    links:
-      - todo-list-db
+      - redis-data:/data
+
 
 volumes:
   todo-postgres:
+  redis-data:

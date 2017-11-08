@@ -1,14 +1,13 @@
 import React from 'react';
+
 import Paper from 'material-ui/Paper';
 import withStyles from 'material-ui/styles/withStyles';
 import compose from 'recompose/compose';
-import branch from 'recompose/branch';
-import renderComponent from 'recompose/renderComponent';
-import { CircularProgress } from 'material-ui/Progress';
+
 import Typography from 'material-ui/Typography';
 import moment from 'moment';
 
-import ajax from '../../util/ajax';
+import ajax from '../../containers/ajax-loading';
 
 const styles = theme => ({
   paper: {
@@ -43,6 +42,5 @@ export default compose(
       lng: -91.7488873,
     }
   }),
-  branch(({ data }) => data.isLoading, renderComponent(CircularProgress)),
   withStyles(styles),
 )(Weather);
