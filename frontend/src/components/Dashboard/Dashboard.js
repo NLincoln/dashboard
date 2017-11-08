@@ -18,12 +18,8 @@ const styles = theme => ({
 const Dashboard = ({ classes }) => (
   <div className={classes.root}>
     <div className={classes.grid}>
-      <div>
-        <Weather />
-      </div>
-      <div>
-        <Todo />
-      </div>
+      <Weather />
+      <Todo />
     </div>
   </div>
 );
