@@ -17,7 +17,7 @@ const styles = theme => ({
 
 const HourlyWeather = ({ ...hourly }) => (
   <div>
-    <li> {moment(hourly.time * 1000).format('LT')} </li>
+    <li> {moment(hourly.time * 1000).format('LLL')} </li>
     <li> {hourly.apparentTemperature} &deg;F </li>
     <li> {hourly.summary} </li>
     <hr />
